@@ -5,14 +5,19 @@ import json
 import numpy as np
 import cv2
 import time
-app = Flask(__name__)
+from flask_cors import CORS, cross_origin
 
+app = Flask(__name__)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/", methods=["GET"])
+@cross_origin()
 def _hello_world():
 	return "Hello world"
 
 @app.route("/predict", methods=["POST"])
+@cross_origin()
 def predict():
     data = {"success": False}
     # req_data = request.get_json()
